@@ -1,6 +1,7 @@
 import react from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { siteTheme } from './styles/siteTheme'
+import './styles/App.css'
 
 import {
   Sidebar,
@@ -20,10 +21,14 @@ let theme = createMuiTheme(siteTheme);
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    border: "2px solid black"
+    border: "2px solid black",
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse'
+    },
   },
   content: {
-    border: '2px solid green'
+    border: '2px solid green',
+    minHeight: '100vh'
   }
 }));
 
@@ -32,21 +37,19 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <Router>
-        <ThemeProvider theme={theme}>
-          <Grid container>
+    <Router>
+      <ThemeProvider theme={theme}>
+          <Grid container className={classes.container}>
             {/* Sidebar component */}
             <Sidebar />
 
             {/* Rest of content */}
-            <Grid item sm={10} className={classes.content}>
+            <Grid item xs={12} sm={10} md={11} className={classes.content}>
 
             </Grid>
           </Grid>
-        </ThemeProvider>
-      </Router>
-    </div>
+      </ThemeProvider>
+    </Router>
   );
 }
 
