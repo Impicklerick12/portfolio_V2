@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         border: '2px solid red',
         [theme.breakpoints.down('xs')]: {
-            height: '100px',
+            height: 'auto',
             width: '100%',
             position: 'fixed',
             bottom: 0
