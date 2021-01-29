@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from "@material-ui/core/styles"
 import {
@@ -24,6 +24,13 @@ const useStyles = makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    solid: {
+        backgroundColor: 'rgba(67, 129, 168,0.5)'
+    },
+    transparent: {
+        backgroundColor: 'rgba(67, 129, 168)',
+        opacity: '90%'
     }
   }));
 
@@ -34,9 +41,24 @@ const MobileBottomNav = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const handleChange = (event) => {
-    
-    };
+    const [navBackground, setNavBackground] = useState('solid')
+    const navRef = React.useRef()
+    navRef.current = navBackground
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const show = window.scrollY > 0
+            if (show) {
+                setNavBackground('solid')
+            } else {
+                setNavBackground('transparent')
+            }
+        }
+        document.addEventListener('scroll', handleScroll)
+        return () => {
+            document.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -48,7 +70,7 @@ const MobileBottomNav = () => {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="static" className={classes[navRef.current]}>
                 <Toolbar className={classes.toolbar}>
                     <div>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" id="instagram-icon">

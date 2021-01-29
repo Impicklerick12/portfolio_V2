@@ -4,7 +4,7 @@ import { siteTheme } from './styles/siteTheme'
 import './styles/App.css'
 
 import {
-  Sidebar,
+  Navbar,
 } from './Exports'
 
 import { 
@@ -40,8 +40,8 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
           <Grid container className={classes.container}>
-            {/* Sidebar component */}
-            <Sidebar />
+            {/* Navbar component */}
+            <Navbar />
 
             {/* Rest of content */}
             <Grid item xs={12} sm={10} md={11} className={classes.content}>

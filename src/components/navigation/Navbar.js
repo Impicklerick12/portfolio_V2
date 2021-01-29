@@ -1,5 +1,5 @@
 import React from 'react'
-import useStyles from '../../styles/sidebar'
+import useStyles from '../../styles/navbar'
 import MobileBottomNav from './MobileBottomNav'
 
 import {
@@ -10,7 +10,7 @@ import {
 
 import { useTheme } from "@material-ui/core/styles"
 
-const Sidebar = () => {
+const Navbar = () => {
 
     const classes = useStyles()
 
@@ -28,4 +28,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default Navbar
